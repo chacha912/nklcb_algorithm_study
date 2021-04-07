@@ -1,6 +1,8 @@
+from sys import stdin
+
 while True:
     try:
-        A, B = map(int, input().split())
-        print(A+B)
-    except: # EOF error
+        a, b = map(int, stdin.readline().split())
+        print(a + b)
+    except:
         break
