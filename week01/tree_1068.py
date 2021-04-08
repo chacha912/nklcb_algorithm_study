@@ -1,6 +1,9 @@
+from _collections import deque
+
 n = int(input())
-arr = list(map(int, input().split(" ")))
+arr_node = list(map(int, input().split(" ")))
 delete = int(input())
+
 
 
 class Node:
@@ -9,13 +12,7 @@ class Node:
         self.parent = parent
         self.child = []
 
-
-class Tree:
-    def __init__(self):
-        self.root = None
-        self.nodes = []
-
-    def find(self, value):
+    def find(self, root, value):
         node = None
 
         def recur(curr):
@@ -27,69 +24,43 @@ class Tree:
             for i in curr.child:
                 recur(i)
 
-
-        recur(self.root)
+        recur(root)
         return node
 
-    def set(self, value, parent):
-        leafs = []
+def solution():
 
-        while True:
-            if not self.nodes:
-                break
-            if not leafs:
-                for node in self.nodes:
-                    if node[1] == -1:
-                        leafs.append(node)
-            else:
-                for node in self.nodes[:]:
-                    for leaf in leafs[:]:
-                        if leaf[0] == node[1]:
-                            leafs.remove(leaf)
-                            leafs.append(node)
+    val_nodes = []
+    for value, node in enumerate(arr_node):
+        val_nodes.append(Node(value, node))
 
+    for i in val_nodes:
+        for j in val_nodes:
+            if i.value == j.parent:
+                i.child.append(j)
 
-        if self.root is None:
-            self.root = Node(value, parent)
-        else:
-            parent_node = self.find(parent)
-            new_node = Node(value, parent)
-            parent_node.child.append(new_node)
-
-    def delete(self, value):
-        node = self.find(value)
-        if node.parent == -1:
-            self.root = None
-        else:
-            parent = self.find(node.parent)
-            parent.child.remove(node)
-
-    def count_leaf(self):
-        count = 0
-
-        def recur(node):
-            nonlocal count
-            if not node.child:
-                count += 1
+    val_nodes = sorted(val_nodes, key=lambda x : x.parent)
+    for i in val_nodes:
+        if i.value == delete:
+            if i.parent == -1:
+                print(0)
                 return
+
+            children = i.find(val_nodes[0], i.parent).child
+            if not children:
+                break
+            else:
+                children.remove(i)
+
+    count = 0
+    dq = deque([])
+    dq.append(val_nodes[0])
+    while dq:
+        node = dq.popleft()
+        if not node.child:
+            count += 1
+        else:
             for i in node.child:
-                recur(i)
+                dq.append(i)
+    print(count)
 
-        if self.root is None:
-            return 0
-        recur(self.root)
-        return count
-
-
-def tree_1068(n, setting, delete):
-    tree = Tree()
-
-
-    for index, parent in enumerate(setting):
-        tree.nodes.append([index, parent])
-    tree.delete(delete)
-    print(tree.count_leaf())
-
-
-tree_1068(n, arr, delete)
-# Test 완료
+solution()
