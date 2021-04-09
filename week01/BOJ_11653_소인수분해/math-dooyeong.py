@@ -1,6 +1,5 @@
 import math
 
-
 def factorization(n):
     index = 2
     while n != 1:
@@ -13,7 +12,6 @@ def factorization(n):
             n /= index
         else:
             index += 1
-
 
 N = int(input())
 
