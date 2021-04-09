@@ -1,9 +1,8 @@
 from _collections import deque
-
+# asd
 n = int(input())
 arr_node = list(map(int, input().split(" ")))
 delete = int(input())
-
 
 
 class Node:
@@ -27,6 +26,7 @@ class Node:
         recur(root)
         return node
 
+
 def solution():
 
     val_nodes = []
@@ -38,7 +38,7 @@ def solution():
             if i.value == j.parent:
                 i.child.append(j)
 
-    val_nodes = sorted(val_nodes, key=lambda x : x.parent)
+    val_nodes = sorted(val_nodes, key=lambda x: x.parent)
     for i in val_nodes:
         if i.value == delete:
             if i.parent == -1:
@@ -62,5 +62,6 @@ def solution():
             for i in node.child:
                 dq.append(i)
     print(count)
+
 
 solution()
