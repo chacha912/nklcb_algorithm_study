@@ -18,25 +18,40 @@
 
 ### 풀이
 
-1. 추의 무게 기준으로 정렬한다.
+1. 추의 무게를 기준으로 정렬한다.
 2. 인덱스 0부터 차례대로 확인. 숫자가 (누적합 + 1) 이하라면 누적합 + 1까지의 숫자들은 기존의 숫자들의 조합으로 모두 표현 가능하다.
 3. 숫자가 (누적합 + 2) 이상이라면 기존 숫자들의 조합으로 (누적합 + 1) 표현이 불가능하므로 (누적합 + 1)을 출력한다.
 
 ```python
 from sys import stdin
 
-n = int(stdin.readline())
-weight = list(map(int, stdin.readline().split()))
-weight.sort()
-
 def solution(weight):
+    weight.sort()
     sum = 0
-    for i in weight:
-        if i >= sum + 2:
+    for w in weight:
+        if w >= sum + 2:
             return sum + 1
         else:
-            sum += i
+            sum += w
     return sum + 1
 
+n = int(stdin.readline())
+weight = list(map(int, stdin.readline().split()))
 print(solution(weight))
+```
+
+```python
+from sys import stdin
+
+n = int(stdin.readline().strip())
+a = list(map(int,stdin.readline().split()))
+a.sort()
+s = 1
+
+for i in range(n):
+    if a[i] > s:
+        break
+    s += a[i]
+
+print(s)
 ```
