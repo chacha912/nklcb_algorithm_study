@@ -9,9 +9,10 @@ connect = set()
 
 for i in range(n):
     edge = list(map(int,stdin.readline().split()))
-    for j in range(n):
+    for j in range(i+1, n):
         if edge[j] == 1:
             edges[i+1].add(j+1)
+            edges[j+1].add(i+1)
 
 route = list(map(int,stdin.readline().split()))
 deq.append(route[0])
