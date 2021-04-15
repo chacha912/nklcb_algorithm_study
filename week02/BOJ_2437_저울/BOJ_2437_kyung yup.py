@@ -1,4 +1,4 @@
-import sys
+gitimport sys
 
 input = sys.stdin.readline
 
