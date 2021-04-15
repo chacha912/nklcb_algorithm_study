@@ -1,4 +1,4 @@
-gitimport sys
+import sys
 
 input = sys.stdin.readline
 
@@ -7,6 +7,7 @@ arr = list(map(int, input().split(' ')))
 arr.sort()
 target = 1
 
+
 def solution():
     global target
     for i in arr:
@@ -14,4 +15,6 @@ def solution():
             break
         target += i
     print(target)
+
+
 solution()
