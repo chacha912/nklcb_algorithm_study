@@ -1,6 +1,11 @@
 from sys import stdin
 import collections
 
+row, col = map(int,stdin.readline().split())
+iceberg =  [[int(i) for i in stdin.readline().split()] for _ in range(row)]
+year = 1
+dirs = [(1, 0), (0, -1), (-1, 0), (0, 1)]
+
 # 다음 년도 빙산 배열 구하기
 def get_newIceberg(iceberg):
     sum = 0
@@ -11,14 +16,9 @@ def get_newIceberg(iceberg):
             curr = iceberg[i][j]
             if curr > 0:
                 melting = 0
-                if iceberg[i-1][j] == 0:
-                    melting += 1
-                if iceberg[i+1][j] == 0:
-                    melting += 1
-                if iceberg[i][j-1] == 0:
-                    melting += 1
-                if iceberg[i][j+1] == 0:
-                    melting += 1
+                for dx, dy in dirs:
+                    if iceberg[i+dx][j+dy] == 0:
+                        melting += 1
 
                 if curr > melting:
                     new_iceberg[i][j] = curr - melting
@@ -34,25 +34,17 @@ def get_icebergSet(start, iceberg):
     deq = collections.deque()
     deq.append(start)
 
+    set_cnt = 0
     while deq:
         i, j = deq.popleft()
         if (i,j) in iceberg_set:
             continue
         iceberg_set.add((i,j))
-        if iceberg[i-1][j] > 0:
-            deq.append((i-1, j))
-        if iceberg[i+1][j] > 0:
-            deq.append((i+1, j))
-        if iceberg[i][j-1] > 0:
-            deq.append((i, j-1))
-        if iceberg[i][j+1] > 0:
-            deq.append((i, j+1))
-    return len(iceberg_set)
-
-
-row, col = map(int,stdin.readline().split())
-iceberg =  [[int(i) for i in stdin.readline().split()] for _ in range(row)]
-year = 1
+        set_cnt += 1
+        for dx, dy in dirs:
+            if iceberg[i+dx][j+dy] > 0:
+                deq.append((i+dx,j+dy))
+    return set_cnt
 
 while year > 0:
     sum, last, iceberg = get_newIceberg(iceberg)
