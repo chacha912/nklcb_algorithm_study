@@ -1,115 +1,96 @@
-from collections import deque
+from itertools import permutations as pmt
+from collections import defaultdict, deque
+import heapq
+import copy
+
+
+def log(arr):
+    for a in arr:
+        print(a)
 
 
 def solution(board, r, c):
-    def get_dist(r1, c1, r2, c2):
-        res = 0
-
-        res += r1 - r2 if r1 >= r2 else r2 - r1
-        res += c1 - c2 if c1 >= c2 else c2 - c1
-
-        return res
-
-    def ctrl_move(r, c, di):
+    def ctrl_move(board, cr, cc, d):
         while 1:
-            r += di[0]
-            c += di[1]
-            if 0 <= r < 4 and 0 <= c < 4 and not board[r][c]:
+            cr += d[0]
+            cc += d[1]
+            if 0 <= cr < 4 and 0 <= cc < 4 and not board[cr][cc]:
                 continue
-
             break
 
-        r = 0 if r < 0 else 3 if r > 3 else r
-        c = 0 if c < 0 else 3 if c > 3 else c
+        cr = 0 if cr < 0 else 3 if cr > 3 else cr
+        cc = 0 if cc < 0 else 3 if cc > 3 else cc
 
-        return r, c
+        return cr, cc
 
-    def select_card(board, cur, target):
-        if board[cur['row']][cur['col']]:
-            return (cur['row'], cur['col'], 0)
+    def card_pop(board, cardDic, target, cur):
+        # card1, card2 = cardDic[target]
+        distances = [[float('inf') for _ in range(4)] for _ in range(4)]
+        h = []
 
-        card_distance_dict = dict()
-        tmp = [[0 for _ in range(4)] for _ in range(4)]
-        visited = set()
-        q = deque()
-        q.append((cur['row'], cur['col']))
+        heapq.heappush(h, (cur[0], cur[1], 0))
+        distances[cur[0]][cur[1]] = 0
 
-        for i in range(4):
-            for j in range(4):
-                tmp[i][j] = get_dist(i, j, cur['row'], cur['col'])
+        # bfs 1
+        while h:
+            r, c, dist = heapq.heappop(h)
 
-        while q:
-            r, c = q.popleft()
-            for d in dirs:
-                nr, nc = ctrl_move(r, c, d)
-
-                if (nr, nc) not in visited:
-                    visited.add((nr, nc))
-                    if tmp[nr][nc] > tmp[r][c] + 1:
-                        tmp[nr][nc] = tmp[r][c] + 1
-                    q.append((nr, nc))
-
-        q.append((cur['row'], cur['col']))
-        visited.clear()
-        visited.add((cur['row'], cur['col']))
-
-        while q:
-            i, j = q.popleft()
+            if dist > distances[r][c]:
+                continue
 
             for d in dirs:
-                ni, nj = i+d[0], j+d[1]
+                nr, nc = ctrl_move(board, r, c, d)
 
-                if 0 <= ni < 4 and 0 <= nj < 4:
-                    tmp[ni][nj] = min(tmp[ni][nj], tmp[i][j] + 1)
-                    if (ni, nj) not in visited:
-                        visited.add((ni, nj))
-                        q.append((ni, nj))
+                if distances[nr][nc] > dist + 1:
+                    distances[nr][nc] = dist + 1
+                    heapq.heappush(h, (nr, nc, dist + 1))
 
-        min_val = 2000
+        # bfs 2
         for i in range(4):
             for j in range(4):
-                if not board[i][j]:
-                    tmp[i][j] = 0
-                if tmp[i][j] > 0 and tmp[i][j] < min_val:
-                    min_val = tmp[i][j]
-        # tmp made after here ##
-        if target < 0:
-            for i in range(4):
-                for j in range(4):
-                    if tmp[i][j] == min_val:
-                        return (i, j, tmp[i][j])
+                for d in dirs:
+                    ni, nj = i+d[0], j+d[1]
 
-        for i in range(4):
-            for j in range(4):
-                if board[i][j] == target:
-                    return (i, j, tmp[i][j])
+                    if 0 <= ni < 4 and 0 <= nj < 4:
+                        if distances[ni][nj] > distances[i][j] + 1:
+                            distances[ni][nj] = distances[i][j] + 1
 
-    def enter_card(board, cur):
-        cur['enter'] += 1
-        board[cur['row']][cur['col']] = 0
+        # after set distances
+        a, b = cardDic[target]
+        if distances[a[0]][a[1]] > distances[b[0]][b[1]]:
+            a, b = b, a
 
-    ans = 0
-    cur = {'row': r, 'col': c, 'enter': 0}
-    cards = set()
-    dirs = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-    kind = 0
+        if board[a[0]][a[1]] == 0:
+            a = b
 
-    # cards locations
+        board[a[0]][a[1]] = 0
+        cur[0], cur[1] = a[0], a[1]
+
+        return distances[a[0]][a[1]] + 1
+
+    ans = float('inf')
+    cardDic = defaultdict(list)
+    leftCardCnt = 0
+    cur = [r, c]
+    dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
     for i in range(4):
         for j in range(4):
-            if board[i][j]:
-                cards.add((i, j))
+            if board[i][j] > 0:
+                cardDic[board[i][j]].append((i, j))
+                leftCardCnt += 1
 
-    while cur['enter'] < len(cards):
-        card_pair = []
-        _i, _j, _c = select_card(board, cur, -1)
-        ans += _c
-        cur['row'], cur['col'] = _i, _j
-        kind = board[_i][_j]
-        enter_card(board, cur)
-        _i, _j, _c = select_card(board, cur, kind)
-        cur['row'], cur['col'] = _i, _j
-        ans += _c
-        enter_card(board, cur)
+    leftCardCnt //= 2
 
-    return ans + cur['enter']
+    for p in pmt(cardDic.keys(), leftCardCnt):
+        # p = (1,3,2) -> (1, 2, 3) ...
+        tmpCnt = 0
+        cur = [r, c]
+        tmpBoard = copy.deepcopy(board)
+        for kind in p:
+            for _ in range(2):
+                tmpCnt += card_pop(tmpBoard, cardDic, kind, cur)
+        if tmpCnt < ans:
+            ans = tmpCnt
+
+    return ans
