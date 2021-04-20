@@ -4,6 +4,7 @@
 
 ### 문제설명
 
+<<<<<<< HEAD
 https://programmers.co.kr/learn/courses/30/lessons/72414
 
 특정 구간의 누적합을 구해서 어떤 구간의 누적합이 가장 큰지 구하고, 그 구간의 시작점을 리턴해주는 문제입니다.
