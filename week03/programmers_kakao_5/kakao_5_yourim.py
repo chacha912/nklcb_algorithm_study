@@ -7,15 +7,11 @@ def solution(play_time, adv_time, logs):
     def to_time(second):
         hh, mm = divmod(second, 3600)
         mm, ss = divmod(mm, 60)
-        hh = '0'+str(hh) if hh < 10 else str(hh)
-        mm = '0'+str(mm) if mm < 10 else str(mm)
-        ss = '0'+str(ss) if ss < 10 else str(ss)
-        time = hh+':'+mm+":"+ss
+        time = '{:02d}:{:02d}:{:02d}'.format(hh, mm, ss)
         return time
 
     play_second = to_second(play_time)
     adv_second = to_second(adv_time)
-    max_time = play_second - adv_second
     sum_arr = [0 for _ in range(play_second+1)]
 
     for view_time in logs:
@@ -29,6 +25,7 @@ def solution(play_time, adv_time, logs):
         sum_arr[i] += sum_arr[i-1]
 
     start_second = 0
+    max_time = play_second - adv_second
     view_sum = sum(sum_arr[:adv_second])
     max_sum = view_sum
 
@@ -37,7 +34,7 @@ def solution(play_time, adv_time, logs):
         if view_sum > max_sum:
             max_sum = view_sum
             start_second = idx+1
-            
+
     return to_time(start_second)
 
 play_time = "02:03:55"
