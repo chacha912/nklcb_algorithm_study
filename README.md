@@ -15,7 +15,11 @@
 | **#10951** | 🥉Bronze III |           [A+B -4](https://www.acmicpc.net/problem/10951)           | week 01 |      [📂](./week01/BOJ_10951_A+B-4)       | 차유림 |
 | **#11054** |  🥇Gold III  | [가장 긴 바이토닉 부분 수열](https://www.acmicpc.net/problem/11054) | week 02 | [📂](./week02/BOJ_11054_바이토닉부분수열) | 이경엽 |
 | **#11653** | 🥈Silver IV  |         [소인수분해](https://www.acmicpc.net/problem/11653)         | week 01 |    [📂](./week01/BOJ_11653_소인수분해)    | 안승재 |
+| **#12100** |  🥇Gold II   |         [2048(Easy)](https://www.acmicpc.net/problem/12100)         | week 04 |        [📂](./BOJ_12100_2048_Easy)        | 이경엽 |
+| **#13459** |  🥇Gold III  |         [구슬 탈출](https://www.acmicpc.net/problem/13459)          | week 04 |        [📂](./BOJ_13459_구슬탈출)         | 정두영 |
+| **#15683** |   🥇Gold V   |            [감시](https://www.acmicpc.net/problem/15683)            | week 04 |          [📂](./BOJ_15683_감시)           | 차유림 |
 | **#15684** |  🥇Gold IV   |        [사다리 조작](https://www.acmicpc.net/problem/15684)         | week 02 |    [📂](./week02/BOJ_15684_사다리조작)    | 정두영 |
+| **#19238** |  🥇Gold IV   |        [스타트 택시](https://www.acmicpc.net/problem/19238)         | week 04 |       [📂](./BOJ_19238_스타트택시)        | 안승재 |
 
 ### 프로그래머스
 
