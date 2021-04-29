@@ -29,7 +29,7 @@
 
    1. query 조건을 **key** 로, score list를 **value**로 가지는 딕셔너리를 만든다.
    1. **info 추가** : 딕셔너리에서 info 가 해당되는 모든 조건의 key값에 score를 추가한다.
-      - info가 해당되는 조건은 info에서 주어진 각 항목의 값과 '-'의 조합으로 구한다.  
+      - info가 해당되는 조건은 info에서 주어진 각 항목의 값과 '-'의 조합으로 구한다.   
         2^4 = 16 가지의 경우가 있고 itertools 라이브러리의 product를 사용했다.  
          `items = [[lang, '-'],[type, '-'],[career, '-'],[food, '-']] ` <br/>
         `conds = list(map(lambda x: "".join(x), product(*items))) `
@@ -44,7 +44,7 @@
    1. score리스트와 각 항목(cpp, java, python, backend, ...)의 집합을 만든다.
    2. info 를 순회하며 해당하는 항목의 집합에 index를 추가한다. 점수는 scores 리스트에 추가한다.
    3. query 조건에 해당하는 교집합을 구한다.
-   4. 교집합의 index 값을 scores 리스트에서 확인하여 해당 점수 이상일 경우 개수를 구한다. -> 하나씩 값을 확인해서 효율성 테스트를 통과하지 못한다..
+   4. 교집합의 index 값을 scores 리스트에서 확인하여 해당 점수 이상일 경우 개수를 구한다. -> 하나씩 값을 확인해서 효율성 테스트를 통과하지 못한다..   
 
       <img src='./img/set.JPG' alt='효율성 시간 비교' style="width: 300px">
 
