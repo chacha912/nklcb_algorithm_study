@@ -1,12 +1,19 @@
 ## 프로그래머스 카카오 광고 삽입 문제
 
 - 알고리즘 스터디 문제 풀이입니다.
+<<<<<<< HEAD
 
 ### 문제설명
 
 <<<<<<< HEAD
 https://programmers.co.kr/learn/courses/30/lessons/72414
 
+=======
+- [프로그래머스 광고 삽입](https://programmers.co.kr/learn/courses/30/lessons/72414) 에서 풀어볼 수 있습니다.
+
+### 문제설명
+
+>>>>>>> e9b5173fcb8ffc02642c17da6a552e2ff069edbf
 특정 구간의 누적합을 구해서 어떤 구간의 누적합이 가장 큰지 구하고, 그 구간의 시작점을 리턴해주는 문제입니다.
 
 ### 풀이
