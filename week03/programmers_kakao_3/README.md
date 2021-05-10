@@ -28,6 +28,7 @@
 1. **itertools, bisect 라이브러리 사용**
 
    1. query 조건을 **key** 로, score list를 **value**로 가지는 딕셔너리를 만든다.
+
    1. **info 추가** : 딕셔너리에서 info 가 해당되는 모든 조건의 key값에 score를 추가한다.
 
       - info가 해당되는 조건은 info에서 주어진 각 항목의 값과 '-'의 조합으로 구한다.  
