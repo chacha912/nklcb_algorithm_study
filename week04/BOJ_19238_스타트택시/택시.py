@@ -4,6 +4,7 @@ N, M, fuel = map(int, input().split())
 
 board = [] #지도 
 customers = {}  #손님정보
+
 dnX = [0, 0, -1, 1]
 dnY = [-1, 1, 0, 0]
 
@@ -12,6 +13,7 @@ for _ in range(N):
     board.append(list(map(int, input().split())))
 
 startX, startY = map(int, input().split())
+
 startX -= 1
 startY -= 1
 
@@ -24,9 +26,11 @@ for _ in range(M):
 def pick_up(x, y):
     que = deque()
     que.append([x, y, 0])
+
     goalX = 987654321  #다음 승객 위치X
     goalY = 987654321  #다음 승객 위치 Y
     goalFuel = 987654321  #가는데 걸리는 연료
+
     check = [[False] * N for _ in range(N)]
     check[x][y] = True
     while que:
