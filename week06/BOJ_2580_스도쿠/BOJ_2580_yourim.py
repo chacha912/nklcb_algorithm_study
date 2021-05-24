@@ -1,18 +1,14 @@
 import sys
 
 sudoku = [[0 for _ in range(9)] for _ in range(9)]
-row = [set() for _ in range(9)]
-col = [set() for _ in range(9)]
-sq = [set() for _ in range(9)]
+row = [[0 for _ in range(10)] for _ in range(9)]
+col = [[0 for _ in range(10)] for _ in range(9)]
+sq = [[0 for _ in range(10)] for _ in range(9)]
 empty = []
 found = False
 
 def check(i, j, val):
-    if val in row[i]:
-        return False
-    if val in col[j]:
-        return False
-    if val in sq[(i//3) + (j//3)*3]:
+    if row[i][val] == 1 or col[j][val] == 1 or sq[(i//3) + (j//3)*3][val] == 1:
         return False
     return True
 
@@ -35,15 +31,15 @@ def dfs(lev):
             continue
 
         sudoku[i][j] = str(val)
-        row[i].add(val)
-        col[j].add(val)
-        sq[(i//3) + (j//3)*3].add(val)
+        row[i][val] = 1
+        col[j][val] = 1
+        sq[(i//3) + (j//3)*3][val] = 1
         
         dfs(lev + 1)
 
-        row[i].remove(val)
-        col[j].remove(val)
-        sq[(i//3) + (j//3)*3].remove(val)
+        row[i][val] = 0
+        col[j][val] = 0
+        sq[(i//3) + (j//3)*3][val] = 0
 
 
 for i in range(9):
@@ -51,11 +47,12 @@ for i in range(9):
     for j, val in enumerate(line):
         sudoku[i][j] = val
         val = int(val)
-        row[i].add(val)
-        col[j].add(val)
-        sq[(i//3) + (j//3)*3].add(val)
         if val == 0:
             empty.append([i,j])
+            continue
+        row[i][val] = 1
+        col[j][val] = 1
+        sq[(i//3) + (j//3)*3][val] = 1
 
 M = len(empty)
 dfs(0)
