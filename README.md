@@ -8,6 +8,7 @@
 |    번호    |    난이도    |                              문제링크                               |  주차   |                   풀이                    |  담당  |
 | :--------: | :----------: | :-----------------------------------------------------------------: | :-----: | :---------------------------------------: | :----: |
 | **#1068**  |  🥈Silver I  |            [트리](https://www.acmicpc.net/problem/1068)             | week 01 |       [📂](./week01/BOJ_1068_트리)        | 이경엽 |
+| **#1079** | 🥇Gold II  | [마피아](https://www.acmicpc.net/problem/1079) | week08|[📂](./BOJ_1079_마피아) | 정두영 |
 | **#1167**  |  🥇Gold III  |  [트리의 지름](https://www.acmicpc.net/problem/1167)    | week07|  [📂](./BOJ_1167_트리의지름)    | 정두영 |
 | **#1976**  |  🥇Gold IV   |          [여행 가자](https://www.acmicpc.net/problem/1976)          | week 02 |     [📂](./week02/BOJ_1976_여행가자)      | 이경엽 |
 | **#2098**  |   🥇Gold I   |         [외판원 순회](https://www.acmicpc.net/problem/2098)         | week 05 |        [📂](./BOJ_2098_외판원순회)        | 안승재 |
@@ -16,6 +17,8 @@
 | **#2470** |  🥇Gold V  |   [두용액](https://www.acmicpc.net/problem/2470)    |week07|    [📂](./BOJ_2470_두용액)    | 차유림 |
 | **#2573**  |  🥇Gold IV   |            [빙산](https://www.acmicpc.net/problem/2573)             | week 02 |       [📂](./week02/BOJ_2573_빙산)        | 안승재 |
 | **#2580** |🥇Gold IV  | [스도쿠](https://www.acmicpc.net/problem/2580) | week06|[📂](./BOJ_2580_스도쿠) | 정두영 |
+| **#4205** |   ✨Platinum I  | [버스기사 승재](https://www.acmicpc.net/problem/4205)   |  week08| [📂](./BOJ_4205_버스기사승재)   | 안승재 |
+| **#4991** |   🥇Gold II  |  [로봇청소기](https://www.acmicpc.net/problem/4991)    | week08|   [📂](./BOJ_4991_로봇청소기)    | 차유림 |
 | **#10942** |  🥇Gold III  | [팰린드롬?](https://www.acmicpc.net/problem/10942)   | week06|  [📂](./BOJ_10942_팰린드롬)   | 차유림 |
 | **#10951** | 🥉Bronze III |           [A+B -4](https://www.acmicpc.net/problem/10951)           | week 01 |      [📂](./week01/BOJ_10951_A+B-4)       | 차유림 |
 | **#11054** |  🥇Gold III  | [가장 긴 바이토닉 부분 수열](https://www.acmicpc.net/problem/11054) | week 02 | [📂](./week02/BOJ_11054_바이토닉부분수열) | 이경엽 |
@@ -32,6 +35,8 @@
 | **#18119** |  🥇Gold IV   |         [단어 암기](https://www.acmicpc.net/problem/18119)          | week 05 |        [📂](./BOJ_18119_단어암기)         | 정두영 |
 | **#19238** |  🥇Gold IV   |        [스타트 택시](https://www.acmicpc.net/problem/19238)         | week 04 |    [📂](./week04/BOJ_19238_스타트택시)    | 안승재 |
 | **#19591**  |  🥇Gold III  | [독특한 계산기](https://www.acmicpc.net/problem/19591)    |  week06| [📂](./BOJ_19591_독특한계산기)    | 안승재 |
+| **#20061**  |  🥇Gold II  |  [모노미노도미노2](https://www.acmicpc.net/problem/20061)    |  week08| [📂](./BOJ_20061_모노미노도미노2)    | 이경엽 |
+
 
 
 
