@@ -2,6 +2,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,text,vscode,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,text,vscode,macos
 
+# eslint
+node_modules/
+.vscode/
+
 ### macOS ###
 # General
 .DS_Store
